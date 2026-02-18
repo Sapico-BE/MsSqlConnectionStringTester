@@ -185,7 +185,7 @@ namespace SQLConnCheck
             grpQuery.Controls.Add(txtQuery);
             grpQuery.Controls.Add(btnExecuteQuery);
             grpQuery.Controls.Add(txtQueryResult);
-            grpQuery.Dock = DockStyle.Top;
+            grpQuery.Dock = DockStyle.Bottom;
             grpQuery.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             grpQuery.Location = new Point(12, 282);
             grpQuery.Name = "grpQuery";
@@ -242,11 +242,10 @@ namespace SQLConnCheck
             //
             // grpResults
             //
-            grpResults.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grpResults.Controls.Add(dgvResults);
             grpResults.Controls.Add(lblSummary);
+            grpResults.Dock = DockStyle.Fill;
             grpResults.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            grpResults.Location = new Point(12, 412);
             grpResults.Name = "grpResults";
             grpResults.Padding = new Padding(10, 6, 10, 10);
             grpResults.Size = new Size(760, 282);
@@ -315,9 +314,9 @@ namespace SQLConnCheck
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 731);
             Controls.Add(grpResults);
-            Controls.Add(grpQuery);
             Controls.Add(grpFile);
             Controls.Add(grpManual);
+            Controls.Add(grpQuery);
             Font = new Font("Segoe UI", 9F);
             MinimumSize = new Size(800, 770);
             Name = "MainForm";
