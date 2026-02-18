@@ -226,7 +226,17 @@ namespace SQLConnCheck
                     {
                         var values = new string[fieldCount];
                         for (int i = 0; i < fieldCount; i++)
-                            values[i] = reader.IsDBNull(i) ? "NULL" : reader.GetValue(i)?.ToString() ?? "";
+                        {
+                            if (reader.IsDBNull(i))
+                            {
+                                values[i] = "NULL";
+                            }
+                            else
+                            {
+                                try { values[i] = reader.GetValue(i)?.ToString() ?? ""; }
+                                catch { values[i] = $"<{reader.GetDataTypeName(i)}>"; }
+                            }
+                        }
                         sb.AppendLine(string.Join("  |  ", values));
                         rowCount++;
                     }

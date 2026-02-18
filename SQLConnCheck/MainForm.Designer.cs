@@ -149,7 +149,7 @@ namespace SQLConnCheck
             btnBrowse.FlatStyle = FlatStyle.System;
             btnBrowse.Location = new Point(13, 50);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(140, 28);
+            btnBrowse.Size = new Size(175, 28);
             btnBrowse.TabIndex = 0;
             btnBrowse.Text = "Browse appsettings.json";
             btnBrowse.UseVisualStyleBackColor = true;
@@ -160,9 +160,9 @@ namespace SQLConnCheck
             lblFilePath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblFilePath.Font = new Font("Consolas", 8.5F, FontStyle.Regular);
             lblFilePath.ForeColor = Color.DimGray;
-            lblFilePath.Location = new Point(163, 54);
+            lblFilePath.Location = new Point(198, 54);
             lblFilePath.Name = "lblFilePath";
-            lblFilePath.Size = new Size(480, 20);
+            lblFilePath.Size = new Size(444, 20);
             lblFilePath.TabIndex = 1;
             lblFilePath.Text = "No file selected";
             //
@@ -185,12 +185,12 @@ namespace SQLConnCheck
             grpQuery.Controls.Add(txtQuery);
             grpQuery.Controls.Add(btnExecuteQuery);
             grpQuery.Controls.Add(txtQueryResult);
-            grpQuery.Dock = DockStyle.Top;
+            grpQuery.Dock = DockStyle.Bottom;
             grpQuery.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             grpQuery.Location = new Point(12, 282);
             grpQuery.Name = "grpQuery";
             grpQuery.Padding = new Padding(10, 6, 10, 10);
-            grpQuery.Size = new Size(760, 130);
+            grpQuery.Size = new Size(760, 190);
             grpQuery.TabIndex = 3;
             grpQuery.TabStop = false;
             grpQuery.Text = "Execute Query";
@@ -237,16 +237,15 @@ namespace SQLConnCheck
             txtQueryResult.Name = "txtQueryResult";
             txtQueryResult.ReadOnly = true;
             txtQueryResult.ScrollBars = ScrollBars.Vertical;
-            txtQueryResult.Size = new Size(734, 40);
+            txtQueryResult.Size = new Size(734, 100);
             txtQueryResult.TabIndex = 2;
             //
             // grpResults
             //
-            grpResults.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grpResults.Controls.Add(dgvResults);
             grpResults.Controls.Add(lblSummary);
+            grpResults.Dock = DockStyle.Fill;
             grpResults.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            grpResults.Location = new Point(12, 412);
             grpResults.Name = "grpResults";
             grpResults.Padding = new Padding(10, 6, 10, 10);
             grpResults.Size = new Size(760, 282);
@@ -315,9 +314,9 @@ namespace SQLConnCheck
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 731);
             Controls.Add(grpResults);
-            Controls.Add(grpQuery);
             Controls.Add(grpFile);
             Controls.Add(grpManual);
+            Controls.Add(grpQuery);
             Font = new Font("Segoe UI", 9F);
             MinimumSize = new Size(800, 770);
             Name = "MainForm";
