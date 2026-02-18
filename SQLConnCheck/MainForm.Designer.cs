@@ -190,7 +190,7 @@ namespace SQLConnCheck
             grpQuery.Location = new Point(12, 282);
             grpQuery.Name = "grpQuery";
             grpQuery.Padding = new Padding(10, 6, 10, 10);
-            grpQuery.Size = new Size(760, 130);
+            grpQuery.Size = new Size(760, 190);
             grpQuery.TabIndex = 3;
             grpQuery.TabStop = false;
             grpQuery.Text = "Execute Query";
@@ -237,7 +237,7 @@ namespace SQLConnCheck
             txtQueryResult.Name = "txtQueryResult";
             txtQueryResult.ReadOnly = true;
             txtQueryResult.ScrollBars = ScrollBars.Vertical;
-            txtQueryResult.Size = new Size(734, 40);
+            txtQueryResult.Size = new Size(734, 100);
             txtQueryResult.TabIndex = 2;
             //
             // grpResults
