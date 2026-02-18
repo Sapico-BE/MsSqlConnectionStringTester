@@ -17,19 +17,8 @@ namespace SQLConnCheck
 
         private void StyleDataGrid()
         {
-            dgvResults.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
-            {
-                BackColor = Color.FromArgb(50, 50, 50),
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
-                Alignment = DataGridViewContentAlignment.MiddleLeft,
-                Padding = new Padding(4, 0, 0, 0)
-            };
-            dgvResults.EnableHeadersVisualStyles = false;
-            dgvResults.DefaultCellStyle.SelectionBackColor = Color.FromArgb(210, 228, 255);
-            dgvResults.DefaultCellStyle.SelectionForeColor = Color.Black;
-            dgvResults.RowTemplate.Height = 26;
-            dgvResults.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 248, 252);
+            dgvResults.EnableHeadersVisualStyles = true;
+            dgvResults.RowTemplate.Height = 24;
         }
 
         // ─── Manual Test ───────────────────────────────────────────────────────
@@ -39,31 +28,30 @@ namespace SQLConnCheck
             string connStr = txtConnectionString.Text.Trim();
             if (string.IsNullOrWhiteSpace(connStr))
             {
-                SetManualStatus("Please paste a connection string first.", Color.OrangeRed, isError: true);
+                SetManualStatus("Please paste a connection string first.", Color.DarkRed, isError: true);
                 return;
             }
 
-            SetManualStatus("Testing…", Color.DimGray, isError: false);
+            SetManualStatus("Testing…", SystemColors.GrayText, isError: false);
             btnTestManual.Enabled = false;
 
             var (success, errorMsg) = await TestConnectionAsync(connStr);
 
             if (success)
             {
-                SetManualStatus("✔  SUCCESS — Connection opened successfully.", Color.FromArgb(0, 140, 0), isError: false);
-                // Also populate results grid with a single row
+                SetManualStatus("SUCCESS — Connection opened successfully.", Color.DarkGreen, isError: false);
                 PopulateGridSingleRow("(Manual)", success, errorMsg);
             }
             else
             {
-                SetManualStatus($"✘  FAILED — {errorMsg}", Color.Crimson, isError: true);
+                SetManualStatus($"FAILED — {errorMsg}", Color.DarkRed, isError: true);
                 PopulateGridSingleRow("(Manual)", success, errorMsg);
             }
 
             btnTestManual.Enabled = true;
         }
 
-        private void SetManualStatus(string text, Color color, bool isError)
+        private void SetManualStatus(string text, Color color, bool _)
         {
             lblManualStatus.ForeColor = color;
             lblManualStatus.Text = text;
@@ -95,7 +83,7 @@ namespace SQLConnCheck
             {
                 _selectedFilePath = dlg.FileName;
                 lblFilePath.Text = _selectedFilePath;
-                lblFilePath.ForeColor = Color.FromArgb(0, 80, 160);
+                lblFilePath.ForeColor = SystemColors.WindowText;
                 btnTestFile.Enabled = true;
                 dgvResults.Rows.Clear();
                 lblSummary.Text = "";
@@ -161,7 +149,7 @@ namespace SQLConnCheck
 
             // Final summary with colour
             int total = successCount + failCount;
-            lblSummary.ForeColor = failCount == 0 ? Color.FromArgb(0, 120, 0) : Color.Crimson;
+            lblSummary.ForeColor = failCount == 0 ? Color.DarkGreen : Color.DarkRed;
             lblSummary.Text = $"Done — {total} tested, {successCount} succeeded, {failCount} failed.";
 
             btnTestFile.Enabled = true;
@@ -229,14 +217,12 @@ namespace SQLConnCheck
 
             if (success)
             {
-                statusCell.Style.ForeColor = Color.FromArgb(0, 140, 0);
-                statusCell.Style.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+                statusCell.Style.ForeColor = Color.DarkGreen;
             }
             else
             {
-                statusCell.Style.ForeColor = Color.Crimson;
-                statusCell.Style.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-                row.Cells[2].Style.ForeColor = Color.Crimson;
+                statusCell.Style.ForeColor = Color.DarkRed;
+                row.Cells[2].Style.ForeColor = Color.DarkRed;
             }
         }
     }
