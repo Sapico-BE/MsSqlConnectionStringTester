@@ -157,6 +157,90 @@ namespace SQLConnCheck
             btnTestManual.Enabled = true;
         }
 
+        // ─── Query Execution ───────────────────────────────────────────────────
+
+        private async void btnExecuteQuery_Click(object sender, EventArgs e)
+        {
+            string connStr = txtConnectionString.Text.Trim();
+            if (string.IsNullOrWhiteSpace(connStr))
+            {
+                txtQueryResult.ForeColor = Color.DarkRed;
+                txtQueryResult.Text = "Error: paste a connection string first.";
+                return;
+            }
+
+            string query = txtQuery.Text.Trim();
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                txtQueryResult.ForeColor = Color.DarkRed;
+                txtQueryResult.Text = "Error: enter a SQL query.";
+                return;
+            }
+
+            txtQueryResult.ForeColor = SystemColors.GrayText;
+            txtQueryResult.Text = "Executing…";
+            btnExecuteQuery.Enabled = false;
+
+            var (result, error) = await ExecuteQueryAsync(connStr, query);
+
+            if (error != null)
+            {
+                txtQueryResult.ForeColor = Color.DarkRed;
+                txtQueryResult.Text = $"Error: {error}";
+            }
+            else
+            {
+                txtQueryResult.ForeColor = SystemColors.WindowText;
+                txtQueryResult.Text = result;
+            }
+
+            btnExecuteQuery.Enabled = true;
+        }
+
+        private static Task<(string? Result, string? Error)> ExecuteQueryAsync(string connectionString, string query)
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    using var conn = new SqlConnection(connectionString);
+                    conn.Open();
+                    using var cmd = new SqlCommand(query, conn);
+                    using var reader = cmd.ExecuteReader();
+
+                    var sb = new System.Text.StringBuilder();
+
+                    // Column headers
+                    int fieldCount = reader.FieldCount;
+                    if (fieldCount > 0)
+                    {
+                        var headers = new string[fieldCount];
+                        for (int i = 0; i < fieldCount; i++)
+                            headers[i] = reader.GetName(i);
+                        sb.AppendLine(string.Join("  |  ", headers));
+                        sb.AppendLine(new string('-', Math.Min(string.Join("  |  ", headers).Length, 100)));
+                    }
+
+                    int rowCount = 0;
+                    while (reader.Read())
+                    {
+                        var values = new string[fieldCount];
+                        for (int i = 0; i < fieldCount; i++)
+                            values[i] = reader.IsDBNull(i) ? "NULL" : reader.GetValue(i)?.ToString() ?? "";
+                        sb.AppendLine(string.Join("  |  ", values));
+                        rowCount++;
+                    }
+
+                    sb.Append(rowCount == 0 ? "(0 rows returned)" : $"({rowCount} row(s) returned)");
+                    return (sb.ToString(), (string?)null);
+                }
+                catch (Exception ex)
+                {
+                    return ((string?)null, ex.Message);
+                }
+            });
+        }
+
         // ─── Core Helpers ──────────────────────────────────────────────────────
 
         /// <summary>

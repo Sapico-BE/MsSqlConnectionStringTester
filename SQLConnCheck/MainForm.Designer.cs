@@ -38,6 +38,11 @@ namespace SQLConnCheck
             btnBrowse = new Button();
             lblFilePath = new Label();
             btnTestFile = new Button();
+            grpQuery = new GroupBox();
+            lblQueryInstruction = new Label();
+            txtQuery = new TextBox();
+            btnExecuteQuery = new Button();
+            txtQueryResult = new TextBox();
             grpResults = new GroupBox();
             dgvResults = new DataGridView();
             colName = new DataGridViewTextBoxColumn();
@@ -46,6 +51,7 @@ namespace SQLConnCheck
             lblSummary = new Label();
             grpManual.SuspendLayout();
             grpFile.SuspendLayout();
+            grpQuery.SuspendLayout();
             grpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvResults).BeginInit();
             SuspendLayout();
@@ -173,13 +179,74 @@ namespace SQLConnCheck
             btnTestFile.UseVisualStyleBackColor = true;
             btnTestFile.Click += btnTestFile_Click;
             //
+            // grpQuery
+            //
+            grpQuery.Controls.Add(lblQueryInstruction);
+            grpQuery.Controls.Add(txtQuery);
+            grpQuery.Controls.Add(btnExecuteQuery);
+            grpQuery.Controls.Add(txtQueryResult);
+            grpQuery.Dock = DockStyle.Top;
+            grpQuery.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            grpQuery.Location = new Point(12, 282);
+            grpQuery.Name = "grpQuery";
+            grpQuery.Padding = new Padding(10, 6, 10, 10);
+            grpQuery.Size = new Size(760, 130);
+            grpQuery.TabIndex = 3;
+            grpQuery.TabStop = false;
+            grpQuery.Text = "Execute Query";
+            //
+            // lblQueryInstruction
+            //
+            lblQueryInstruction.AutoSize = true;
+            lblQueryInstruction.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
+            lblQueryInstruction.ForeColor = Color.DimGray;
+            lblQueryInstruction.Location = new Point(13, 26);
+            lblQueryInstruction.Name = "lblQueryInstruction";
+            lblQueryInstruction.TabIndex = 3;
+            lblQueryInstruction.Text = "SQL query to run against the connection string above:";
+            //
+            // txtQuery
+            //
+            txtQuery.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtQuery.Font = new Font("Consolas", 9F);
+            txtQuery.Location = new Point(13, 46);
+            txtQuery.Name = "txtQuery";
+            txtQuery.Size = new Size(620, 23);
+            txtQuery.TabIndex = 0;
+            txtQuery.Text = "SELECT 1;";
+            //
+            // btnExecuteQuery
+            //
+            btnExecuteQuery.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExecuteQuery.FlatStyle = FlatStyle.System;
+            btnExecuteQuery.Location = new Point(645, 46);
+            btnExecuteQuery.Name = "btnExecuteQuery";
+            btnExecuteQuery.Size = new Size(102, 23);
+            btnExecuteQuery.TabIndex = 1;
+            btnExecuteQuery.Text = "Execute";
+            btnExecuteQuery.UseVisualStyleBackColor = true;
+            btnExecuteQuery.Click += btnExecuteQuery_Click;
+            //
+            // txtQueryResult
+            //
+            txtQueryResult.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtQueryResult.BackColor = SystemColors.Window;
+            txtQueryResult.Font = new Font("Consolas", 8.5F);
+            txtQueryResult.Location = new Point(13, 78);
+            txtQueryResult.Multiline = true;
+            txtQueryResult.Name = "txtQueryResult";
+            txtQueryResult.ReadOnly = true;
+            txtQueryResult.ScrollBars = ScrollBars.Vertical;
+            txtQueryResult.Size = new Size(734, 40);
+            txtQueryResult.TabIndex = 2;
+            //
             // grpResults
             //
             grpResults.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grpResults.Controls.Add(dgvResults);
             grpResults.Controls.Add(lblSummary);
             grpResults.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            grpResults.Location = new Point(12, 306);
+            grpResults.Location = new Point(12, 412);
             grpResults.Name = "grpResults";
             grpResults.Padding = new Padding(10, 6, 10, 10);
             grpResults.Size = new Size(760, 282);
@@ -246,12 +313,13 @@ namespace SQLConnCheck
             //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 601);
+            ClientSize = new Size(784, 731);
             Controls.Add(grpResults);
+            Controls.Add(grpQuery);
             Controls.Add(grpFile);
             Controls.Add(grpManual);
             Font = new Font("Segoe UI", 9F);
-            MinimumSize = new Size(800, 640);
+            MinimumSize = new Size(800, 770);
             Name = "MainForm";
             Padding = new Padding(12, 12, 12, 12);
             StartPosition = FormStartPosition.CenterScreen;
@@ -260,6 +328,8 @@ namespace SQLConnCheck
             grpManual.PerformLayout();
             grpFile.ResumeLayout(false);
             grpFile.PerformLayout();
+            grpQuery.ResumeLayout(false);
+            grpQuery.PerformLayout();
             grpResults.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvResults).EndInit();
             ResumeLayout(false);
@@ -277,6 +347,11 @@ namespace SQLConnCheck
         private Button btnBrowse;
         private Label lblFilePath;
         private Button btnTestFile;
+        private GroupBox grpQuery;
+        private Label lblQueryInstruction;
+        private TextBox txtQuery;
+        private Button btnExecuteQuery;
+        private TextBox txtQueryResult;
         private GroupBox grpResults;
         private DataGridView dgvResults;
         private DataGridViewTextBoxColumn colName;
