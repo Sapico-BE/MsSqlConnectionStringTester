@@ -2,6 +2,8 @@
 
 A lightweight Windows Forms utility for testing MS SQL Server connection strings — by hand or in bulk from an `appsettings.json` file — and running ad-hoc queries directly from the UI.
 
+[![Screenshot](docs/screenshots/success.png)](docs/screenshots/success.png)
+
 ## Requirements
 
 - Windows
