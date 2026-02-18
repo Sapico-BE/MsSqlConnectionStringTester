@@ -92,17 +92,13 @@ namespace SQLConnCheck
             // btnTestManual
             //
             btnTestManual.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnTestManual.BackColor = Color.FromArgb(0, 120, 212);
-            btnTestManual.FlatAppearance.BorderSize = 0;
-            btnTestManual.FlatStyle = FlatStyle.Flat;
-            btnTestManual.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            btnTestManual.ForeColor = Color.White;
+            btnTestManual.FlatStyle = FlatStyle.System;
             btnTestManual.Location = new Point(645, 48);
             btnTestManual.Name = "btnTestManual";
             btnTestManual.Size = new Size(102, 80);
             btnTestManual.TabIndex = 1;
             btnTestManual.Text = "Test\r\nConnection";
-            btnTestManual.UseVisualStyleBackColor = false;
+            btnTestManual.UseVisualStyleBackColor = true;
             btnTestManual.Click += btnTestManual_Click;
             //
             // lblManualStatus
@@ -144,17 +140,13 @@ namespace SQLConnCheck
             //
             // btnBrowse
             //
-            btnBrowse.BackColor = Color.FromArgb(80, 80, 80);
-            btnBrowse.FlatAppearance.BorderSize = 0;
-            btnBrowse.FlatStyle = FlatStyle.Flat;
-            btnBrowse.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnBrowse.ForeColor = Color.White;
+            btnBrowse.FlatStyle = FlatStyle.System;
             btnBrowse.Location = new Point(13, 50);
             btnBrowse.Name = "btnBrowse";
             btnBrowse.Size = new Size(140, 28);
             btnBrowse.TabIndex = 0;
             btnBrowse.Text = "Browse appsettings.json";
-            btnBrowse.UseVisualStyleBackColor = false;
+            btnBrowse.UseVisualStyleBackColor = true;
             btnBrowse.Click += btnBrowse_Click;
             //
             // lblFilePath
@@ -171,18 +163,14 @@ namespace SQLConnCheck
             // btnTestFile
             //
             btnTestFile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnTestFile.BackColor = Color.FromArgb(0, 120, 212);
             btnTestFile.Enabled = false;
-            btnTestFile.FlatAppearance.BorderSize = 0;
-            btnTestFile.FlatStyle = FlatStyle.Flat;
-            btnTestFile.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnTestFile.ForeColor = Color.White;
+            btnTestFile.FlatStyle = FlatStyle.System;
             btnTestFile.Location = new Point(648, 50);
             btnTestFile.Name = "btnTestFile";
             btnTestFile.Size = new Size(99, 28);
             btnTestFile.TabIndex = 2;
             btnTestFile.Text = "Test All";
-            btnTestFile.UseVisualStyleBackColor = false;
+            btnTestFile.UseVisualStyleBackColor = true;
             btnTestFile.Click += btnTestFile_Click;
             //
             // grpResults
@@ -258,7 +246,6 @@ namespace SQLConnCheck
             //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(245, 245, 245);
             ClientSize = new Size(784, 601);
             Controls.Add(grpResults);
             Controls.Add(grpFile);
