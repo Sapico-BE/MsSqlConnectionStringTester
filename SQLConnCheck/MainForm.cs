@@ -51,7 +51,7 @@ namespace SQLConnCheck
             btnTestManual.Enabled = true;
         }
 
-        private void SetManualStatus(string text, Color color, bool _)
+        private void SetManualStatus(string text, Color color, bool isError)
         {
             lblManualStatus.ForeColor = color;
             lblManualStatus.Text = text;
