@@ -149,7 +149,7 @@ namespace SQLConnCheck
             btnBrowse.FlatStyle = FlatStyle.System;
             btnBrowse.Location = new Point(13, 50);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(140, 28);
+            btnBrowse.Size = new Size(175, 28);
             btnBrowse.TabIndex = 0;
             btnBrowse.Text = "Browse appsettings.json";
             btnBrowse.UseVisualStyleBackColor = true;
@@ -160,9 +160,9 @@ namespace SQLConnCheck
             lblFilePath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblFilePath.Font = new Font("Consolas", 8.5F, FontStyle.Regular);
             lblFilePath.ForeColor = Color.DimGray;
-            lblFilePath.Location = new Point(163, 54);
+            lblFilePath.Location = new Point(198, 54);
             lblFilePath.Name = "lblFilePath";
-            lblFilePath.Size = new Size(480, 20);
+            lblFilePath.Size = new Size(444, 20);
             lblFilePath.TabIndex = 1;
             lblFilePath.Text = "No file selected";
             //
